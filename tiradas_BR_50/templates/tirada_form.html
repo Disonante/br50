@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Formulario de Tirada{% endblock %}
+
+{% block content %}
+<section class="tirada-form">
+    <h3>{% if form.instance.pk %}Editar{% else %}Añadir Nueva{% endif %} Tirada</h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">{% if form.instance.pk %}Actualizar{% else %}Guardar{% endif %}</button>
+    </form>
+</section>
+{% endblock %}

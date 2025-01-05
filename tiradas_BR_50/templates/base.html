@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}BR-50{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <header>
+        <div class="diana">
+            <div class="circulo circulo-negro"></div>
+            <div class="circulo circulo-gris"></div>
+            <div class="circulo circulo-gris2"></div>
+            <div class="circulo circulo-rojo"></div>
+        </div>
+        
+        
+
+        <div class="titulo">
+            <h1>BR-50</h1>
+            
+            <h2>Tiro Olímpico de Alta Precisión</h2>
+        </div>
+        
+       
+        
+        
+        
+    </header>
+
+    <main>
+       
+ 
+        {% block content %}{% endblock %}
+    </main>
+  
+
+    <footer> 
+
+        <p> BR-50 | Registro de tiradas para tiradores de Alta Precisión</p>
+        <p>
+            <div class="containerimg">
+                <div >
+                    <img class="foto-redonda" >
+                </div>
+            </div>
+        </p>
+                  
+        <p>&copy; 2025 | Designed by | Chema Muñíz Mayoral</p>
+            <div class="diana" > 
+                <div class="circulo circulo-gris"></div>
+                <div class="circulo circulo-gris2"></div>
+                <div class="circulo circulo-rojo"></div>
+            </div>
+            <p>Todos los derechos reservados</p>
+               
+    </footer>
+
+</body>
+</html>

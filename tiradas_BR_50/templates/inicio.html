@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+<section class="inicio">
+    <h2>Inicia sesión o regístrate</h2>
+    <h2><a href="{% url 'login' %}" class="btn btn-primary">Iniciar sesión</a></h2>
+    <h2><a href="{% url 'register' %}" class="btn btn-secondary">Registrarse</a></h2>
+</section>
+{% endblock %}

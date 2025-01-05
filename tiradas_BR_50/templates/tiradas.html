@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block title %}Tiradas{% endblock %}
+
+{% block content %}
+<section class="tiradas">
+    <h2>Registro de Tiradas BR-50</h2>
+    <h3><a href="{% url 'nueva_tirada' %}" class="btn btn-primary">Añadir una nueva tirada</a></h3>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Tirador</th>
+                <th>Tipo</th>
+                <th>Campo</th>
+                <th>Modalidad</th>
+                <th>Arma</th>
+                <th>Munición</th>
+                <th>Disparos</th>
+                <th>Puntuación</th>
+                <th>Dieces</th>
+                <th>Viento</th>
+                <th>Vel. Viento</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tirada in tiradas %}
+                <tr>
+                    <td><b> {{ tirada.tirador }} </b></td>
+                    <td>{{ tirada.tipo }}</td>
+                    <td>{{ tirada.campo }}</td>
+                    <td><b>{{ tirada.modalidad }}</b></td>
+                    <td>{{ tirada.arma }}</td>
+                    <td>{{ tirada.marca_municion }}</td>
+                    <td>{{ tirada.numero_disparos }}</td>
+                    <td><b style="color: rgb(18, 199, 18);">{{ tirada.puntuacion }}</b></td>
+                    <td>{{ tirada.numero_dieces }}</td>
+                    <td>{{ tirada.direccion_viento }}</td>
+                    <td>{{ tirada.velocidad_viento }} km/h</td>
+                    <td><b>{{ tirada.fecha }}</b></td>
+                    <td>
+                        {% if tirada.usuario == request.user %}
+                            <a href="{% url 'editar_tirada' tirada.pk %}" class="btn btn-secondary">Editar</a>
+                            <p>o</p>
+                            <a href="{% url 'eliminar_tirada' tirada.pk %}" class="btn btn-danger">Eliminar</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+
+
+
+
+<!-- Insertamos la gráfica -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Canvas para la gráfica -->
+ <div id="graficos">
+    <section class="tiradas">
+        <h2>Gráfico de Puntuaciones</h2>
+        <canvas id="grafica" width="200" height="100"></canvas>
+    </section>
+ </div>
+<script>
+    
+
+     // Recuperamos los datos de Django 
+     const tiradasData = JSON.parse('{{ tiradas_data|escapejs }}');
+
+    // Extraemos los datos para la gráfica
+    const fechasYtiradores = tiradasData.map(tirada => `${tirada.tirador} - ${tirada.fecha}`);
+    const tiradores = tiradasData.map(tirada => tirada.tirador);
+    const fechas = tiradasData.map(tirada => tirada.fecha);
+    const puntos = tiradasData.map(tirada => tirada.puntuacion);
+    const dieces = tiradasData.map(tirada => tirada.numero_dieces);
+
+
+
+    // Crear la gráfica
+    const ctx = document.getElementById('grafica').getContext('2d');
+    const grafica = new Chart(ctx, {
+        type: 'bar',  // Tipo de gráfica: de barras
+        data: {
+            labels: fechasYtiradores, // Nombre de los tiradores y Fecha
+           
+            
+            datasets: [{
+                label: 'Puntos',
+                data: puntos,
+                backgroundColor: 'rgba(149, 213, 178, 0.6)',  // Otro color para las barras
+                borderColor: 'green',  // Color del borde
+                borderWidth: 1
+            },
+            {
+                label: 'Número de Dieces',
+                data: dieces,
+                
+                backgroundColor: 'rgba(90, 162, 235, 0.6)',  // Color de las barras
+                borderColor: 'rgba(75, 75, 75, 1)',  // Color del borde
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,  // Hace la gráfica responsive
+            scales: {
+                y: {
+                    beginAtZero: true  // Comienza la escala en cero
+                }
+            }
+        }
+    });
+</script>
+
+
+{% endblock %}
