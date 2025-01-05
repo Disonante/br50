@@ -83,8 +83,21 @@ LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
 
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 # URL para archivos estáticos
 STATIC_URL = '/static/'
+
+# Directorio para la recolección de archivos estáticos en producción
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Directorios adicionales para buscar archivos estáticos
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
 
 
 # settings.py
