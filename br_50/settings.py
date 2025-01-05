@@ -90,10 +90,6 @@ LANGUAGE_CODE = 'es-es'
 TIME_ZONE = 'UTC'
 
 
-import os
-from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Ruta base para los archivos estáticos
 STATIC_URL = '/static/'
