@@ -95,7 +95,7 @@ STATIC_URL = '/static/'
 
 # Si estás desplegando en producción, también configura la ubicación de los archivos estáticos:
 STATICFILES_DIRS = [
-    BASE_DIR / "static",  # Si tus archivos estáticos están en una carpeta 'static' dentro del proyecto
+    BASE_DIR / "static/css/",  # Si tus archivos estáticos están en una carpeta 'static' dentro del proyecto
 ]
 
 # Directorio donde se recolectan los archivos estáticos en producción (solo en producción)
