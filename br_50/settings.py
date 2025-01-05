@@ -83,7 +83,8 @@ LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
 
-
+# URL para archivos estáticos
+STATIC_URL = '/static/'
 
 
 # settings.py
