@@ -89,7 +89,17 @@ LANGUAGE_CODE = 'es-es'
 
 TIME_ZONE = 'UTC'
 
+
+# Ruta para los archivos estáticos
 STATIC_URL = '/static/'
+
+# Si estás desplegando en producción, también configura la ubicación de los archivos estáticos:
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # Si tus archivos estáticos están en una carpeta 'static' dentro del proyecto
+]
+
+# Directorio donde se recolectan los archivos estáticos en producción (solo en producción)
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
