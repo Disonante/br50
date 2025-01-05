@@ -90,18 +90,21 @@ LANGUAGE_CODE = 'es-es'
 TIME_ZONE = 'UTC'
 
 
-# Ruta para los archivos estáticos
+import os
+from pathlib import Path
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Ruta base para los archivos estáticos
 STATIC_URL = '/static/'
 
-# Si estás desplegando en producción, también configura la ubicación de los archivos estáticos:
+# Directorio donde se almacenan los archivos estáticos en desarrollo
 STATICFILES_DIRS = [
-    BASE_DIR / "static/css/",  # Si tus archivos estáticos están en una carpeta 'static' dentro del proyecto
+    BASE_DIR / 'static',  # Si tus archivos estáticos están en una carpeta 'static' dentro del proyecto
 ]
 
-# Directorio donde se recolectan los archivos estáticos en producción (solo en producción)
-STATIC_ROOT = BASE_DIR / "staticfiles"
-
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# Directorio donde se recolectan los archivos estáticos en producción
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # settings.py
 LOGIN_REDIRECT_URL = '/tiradas/'  # Redirige a la página de tiradas después de iniciar sesión
