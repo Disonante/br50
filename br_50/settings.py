@@ -90,22 +90,15 @@ LANGUAGE_CODE = 'es-es'
 TIME_ZONE = 'UTC'
 
 # settings.py
-
 import os
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Ruta base para los archivos estáticos
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / "static"]  # Incluye los archivos estáticos en desarrollo
+STATIC_ROOT = BASE_DIR / "staticfiles"  # El directorio para collectstatic en producción
 
-# Directorio donde se almacenan los archivos estáticos en desarrollo
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',  # Si tus archivos estáticos están en una carpeta 'static' dentro del proyecto
-]
-
-# Directorio donde se recolectan los archivos estáticos en producción
-STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # settings.py
