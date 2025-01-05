@@ -105,7 +105,7 @@ STATICFILES_DIRS = [
 ]
 
 # Directorio donde se recolectan los archivos estáticos en producción
-STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 
 # settings.py
